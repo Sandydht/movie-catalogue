@@ -1,10 +1,6 @@
 import FavoriteMovieIdb from '../src/scripts/data/favorite-movie-idb';
 import * as TestFactories from './helpers/testFactories';
 
-// TODO:
-// 1. Memberi nama yang lebih berbeda untuk createLikeButtonTemplate dan createLikedButtonTemplate
-// 2. Alur negatif menyimpan movie tanpa ID tidak boleh menyebabkan kegagalan.
-
 describe('Liking A Movie', () => {
   const addLikeButtonContainer = () => {
     document.body.innerHTML = '<div id="likeButtonContainer"></div>';
