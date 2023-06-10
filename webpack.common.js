@@ -2,8 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const DotenvPlugin = require('dotenv-webpack');
-const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
-const ImageminPngQuant = require('imagemin-pngquant');
+const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -48,12 +47,16 @@ module.exports = {
       ],
     }),
     new DotenvPlugin(),
-    new ImageminWebpackPlugin({
-      plugins: [
-        ImageminPngQuant({
-          quality: [0.3, 0.5],
-        }),
+    new ImageminWebpWebpackPlugin({
+      config: [
+        {
+          test: /\.(jpe?g|png)/,
+          options: {
+            quality: 50,
+          },
+        },
       ],
+      overrideExtension: true,
     }),
   ],
 };
