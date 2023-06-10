@@ -1,3 +1,5 @@
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable consistent-return */
 import { openDB } from 'idb';
 import CONFIG from '../globals/config';
 
@@ -11,16 +13,33 @@ const dbPromise = openDB(DATABASE_NAME, DATABASE_VERSION, {
 
 const FavoriteMovieIdb = {
   async getMovie(id) {
+    if (!id) {
+      return;
+    }
+
     return (await dbPromise).get(OBJECT_STORE_NAME, id);
   },
   async getAllMovies() {
     return (await dbPromise).getAll(OBJECT_STORE_NAME);
   },
   async putMovie(movie) {
+    if (!movie.hasOwnProperty('id')) {
+      return;
+    }
+
     return (await dbPromise).put(OBJECT_STORE_NAME, movie);
   },
   async deleteMovie(id) {
     return (await dbPromise).delete(OBJECT_STORE_NAME, id);
+  },
+  async searchMovies(query) {
+    return (await this.getAllMovies()).filter((movie) => {
+      const loweredCaseMovieTitle = (movie.title || '-').toLowerCase();
+      const jammedMovieTitle = loweredCaseMovieTitle.replace(/\s/g, '');
+      const loweredCaseQuery = query.toLowerCase();
+      const jammedQuery = loweredCaseQuery.replace(/\s/g, '');
+      return jammedMovieTitle.indexOf(jammedQuery) !== -1;
+    });
   },
 };
 
