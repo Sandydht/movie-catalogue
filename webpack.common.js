@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const DotenvPlugin = require('dotenv-webpack');
 const path = require('path');
 
 module.exports = {
@@ -40,5 +41,6 @@ module.exports = {
         },
       ],
     }),
+    new DotenvPlugin(),
   ],
 };
