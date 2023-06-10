@@ -1,0 +1,15 @@
+
+TODO:
+  ☐ Template hasil pencarian menggunakan template menampilkan film yang disukai.
+  ☐ Mengubah nama FavoriteMovieSearchView agar lebih general.
+
+USE CASE:
+  ☐ Buka halaman film yang disukai.
+  ☐ Tampilkan semua film yang disukai:
+    ✔ Presenter meminta semua daftar film yang disukai kepada model. @done(23-06-10 06:45)
+    ☐ Model mengembalikan daftar film.
+    ☐ Presenter meminta view menampilkan daftar film.
+  ✔ Bila tidak ada film yang disukai, berikan informasi mengenai kondisi tersebut: @done(23-06-10 06:44)
+    ✔ Presenter meminta semua daftar film yang disukai kepada model. @done(23-06-10 06:41)
+    ✔ Model mengembalikan daftar kosong. @done(23-06-10 06:44)
+    ✔ Presenter meminta view menampilkan informasi bahwa belum ada film yang disukai. @done(23-06-10 06:09)

@@ -15,7 +15,7 @@ const Like = {
   async afterRender() {
     const movies = await FavoriteMovieIdb.getAllMovies();
     const moviesContainer = document.querySelector('#movies');
-    
+
     movies.forEach((movie) => {
       moviesContainer.innerHTML += createMovieItemTemplate(movie);
     });
