@@ -4,11 +4,11 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const DotenvPlugin = require('dotenv-webpack');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: {
     app: path.resolve(__dirname, 'src/scripts/index.js'),
-    sw: path.resolve(__dirname, 'src/scripts/sw.js'),
   },
   output: {
     filename: '[name].bundle.js',
@@ -83,5 +83,9 @@ module.exports = {
       overrideExtension: true,
     }),
     new BundleAnalyzerPlugin(),
+    new WorkboxWebpackPlugin.GenerateSW({
+      /* Opsi konfigurasi workbox-webpack-plugin lain didefinisikan disini */
+      swDest: './sw.bundle.js',
+    }),
   ],
 };
